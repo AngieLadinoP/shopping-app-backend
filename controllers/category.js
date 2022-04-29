@@ -7,35 +7,35 @@ const controllerCategory = {
     try {
       const { name, description, image } = req.body;
 
-      if ((!name, !description, !price)) {
+      if ((!name, !description)) {
         return res.status(400).json({ msg: "Please fill in all fields" });
       }
-      const product = new Category({
+      const category = new Category({
         name,
         description,
         image
       });
-      const savedCategory = await product.save();
+      const savedCategory = await category.save();
 
       res.json({ msg: "Category created successfully" });
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
     }
   },
   getCategories: async (req, res) => {
     try {
-      const product = await Category.find();
-      res.json(product);
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+      const category = await Category.find();
+      res.json(category);
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
     }
   },
   getCategory: async (req, res) => {
     try {
-      const product = await Category.findById(req.params._id);
-      res.json(product);
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+      const category = await Category.findById(req.params._id);
+      res.json(category);
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
     }
   },
   updateCategory: async (req, res) => {
@@ -43,11 +43,11 @@ const controllerCategory = {
       const { name, description, image } = req.body;
       await Category.findOneAndUpdate(
         { _id: req.params._id },
-        { name, description }
+        { name, description , image}
       );
       res.json({ msg: "Category successfully updated" });
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
     }
   },
   deleteCategory: async (req, res) => {
@@ -55,8 +55,8 @@ const controllerCategory = {
       await Category.findByIdAndDelete(req.params._id);
 
       res.json({ msg: "Category successfully deleted" });
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
     }
   },
 };

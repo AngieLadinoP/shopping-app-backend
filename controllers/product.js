@@ -32,24 +32,24 @@ const controllerProduct = {
       const savedProduct = await product.save();
 
       res.json({ msg: "Product created successfully" });
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
     }
   },
   getProducts: async (req, res) => {
     try {
       const product = await Product.find();
       res.json(product);
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
     }
   },
   getProduct: async (req, res) => {
     try {
       const product = await Product.findById(req.params._id);
       res.json(product);
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
     }
   },
   updateProduct: async (req, res) => {
@@ -61,8 +61,8 @@ const controllerProduct = {
         { name, description, price, image,components, quantity }
       );
       res.json({ msg: "Product successfully updated" });
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
     }
   },
   deleteProduct: async (req, res) => {
@@ -70,8 +70,8 @@ const controllerProduct = {
       await Product.findByIdAndDelete(req.params._id);
 
       res.json({ msg: "Product successfully deleted" });
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
     }
   },
 };
