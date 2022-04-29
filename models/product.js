@@ -12,6 +12,7 @@ const productSchema = mongoose.Schema({
   price: { type: Number, required: true },
   components: Array,
   quantity: Number,
+  shown:{type:Boolean, default:false},
   createdAt: {
     type: Date,
     default: new Date(),
