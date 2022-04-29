@@ -8,6 +8,7 @@ const controllerProduct = {
       const {
         categoryId,
         name,
+        image,
         category,
         description,
         price,
@@ -21,6 +22,7 @@ const controllerProduct = {
       const product = new Product({
         categoryId,
         name,
+        image,
         category,
         description,
         price,
@@ -52,11 +54,11 @@ const controllerProduct = {
   },
   updateProduct: async (req, res) => {
     try {
-      const { name, category, description, price, components, quantity } =
+      const { name, image, description, price, components, quantity } =
         req.body;
       await Product.findOneAndUpdate(
         { _id: req.params._id },
-        { name, description, price, components, quantity }
+        { name, description, price, image,components, quantity }
       );
       res.json({ msg: "Product successfully updated" });
     } catch (err) {

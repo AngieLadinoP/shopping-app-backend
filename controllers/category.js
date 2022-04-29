@@ -5,7 +5,7 @@ const Router = express.Router();
 const controllerCategory = {
   createCategory: async (req, res) => {
     try {
-      const { name, description } = req.body;
+      const { name, description, image } = req.body;
 
       if ((!name, !description, !price)) {
         return res.status(400).json({ msg: "Please fill in all fields" });
@@ -13,6 +13,7 @@ const controllerCategory = {
       const product = new Category({
         name,
         description,
+        image
       });
       const savedCategory = await product.save();
 
@@ -39,7 +40,7 @@ const controllerCategory = {
   },
   updateCategory: async (req, res) => {
     try {
-      const { name, description } = req.body;
+      const { name, description, image } = req.body;
       await Category.findOneAndUpdate(
         { _id: req.params._id },
         { name, description }
